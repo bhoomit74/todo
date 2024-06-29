@@ -2,22 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:todo/presentation/styles/styles.dart';
 
 class AppTextField extends StatelessWidget {
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final FocusNode? focusNode;
   final String hint;
   final TextStyle? hintStyle;
   final Color cursorColor;
   final double cursorWidth;
   final Widget? prefixIcon;
+  final Color? focusedBorderColor;
+  final Function(String value)? onChanged;
   const AppTextField(
       {super.key,
-      required this.controller,
+      this.controller,
       this.focusNode,
       required this.hint,
       this.cursorColor = AppColors.primary,
       this.cursorWidth = 0.8,
       this.hintStyle,
-      this.prefixIcon});
+      this.prefixIcon,
+      this.focusedBorderColor,
+      this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +31,7 @@ class AppTextField extends StatelessWidget {
         cursorColor: cursorColor,
         cursorWidth: cursorWidth,
         style: AppTextStyle.body(),
+        onChanged: onChanged?.call,
         decoration: InputDecoration(
           hintText: hint,
           hintStyle: hintStyle ?? AppTextStyle.body(color: AppColors.grey),
@@ -47,5 +52,6 @@ class AppTextField extends StatelessWidget {
 
   OutlineInputBorder get _focusedBorder => OutlineInputBorder(
       borderRadius: AppConstants.borderRadius24,
-      borderSide: const BorderSide(width: 0.8, color: AppColors.grey));
+      borderSide:
+          BorderSide(width: 0.8, color: focusedBorderColor ?? AppColors.grey));
 }
