@@ -18,6 +18,9 @@ class AppTextStyle {
   static TextStyle h3Normal({Color? color}) =>
       style(fontSize: 24, color: color);
 
+  static TextStyle h4Normal({Color? color}) =>
+      style(fontSize: 18, color: color);
+
   static TextStyle body({Color? color}) => style(fontSize: 14, color: color);
   static TextStyle caption({Color? color}) => style(fontSize: 12, color: color);
 

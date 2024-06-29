@@ -1,0 +1,25 @@
+enum Greet {
+  morning("Good Morning"),
+  afternoon("Good Afternoon"),
+  evening("Good Evening"),
+  night("Good Night");
+
+  final String greetMessage;
+  const Greet(this.greetMessage);
+
+  static Greet get currentGreet {
+    int hour = DateTime.now().hour;
+
+    if (hour >= 5 && hour < 12) {
+      return Greet.morning;
+    } else if (hour >= 12 && hour < 17) {
+      return Greet.afternoon;
+    } else if (hour >= 17 && hour < 21) {
+      return Greet.evening;
+    } else {
+      return Greet.night;
+    }
+  }
+
+  static String get message => currentGreet.greetMessage;
+}

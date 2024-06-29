@@ -5,6 +5,7 @@ class AppConstants {
   static final BorderRadius borderRadius16 = BorderRadius.circular(16);
   static final BorderRadius borderRadius24 = BorderRadius.circular(24);
   static final BorderRadius borderRadius32 = BorderRadius.circular(32);
+  static final BorderRadius borderRadius40 = BorderRadius.circular(40);
 
   static const Gap gap64 = Gap(64);
   static const Gap gap32 = Gap(32);
