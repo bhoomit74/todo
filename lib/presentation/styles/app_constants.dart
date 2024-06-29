@@ -21,4 +21,6 @@ class AppConstants {
   static const EdgeInsets paddingH16 = EdgeInsets.symmetric(horizontal: 16);
   static const EdgeInsets paddingV16 = EdgeInsets.symmetric(vertical: 16);
   static const EdgeInsets padding32 = EdgeInsets.all(32);
+
+  static const Duration debounceInterval = Duration(milliseconds: 500);
 }
