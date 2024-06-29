@@ -9,4 +9,5 @@ class AppColors {
   static const Color btnEnd = Color(0xFF196EEE);
   static const Color blue100 = Color(0xFFF3F8FE);
   static const Color grey = Color(0xFFB8B8B8);
+  static const Color transparent = Colors.transparent;
 }
