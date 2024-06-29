@@ -5,11 +5,11 @@ class AppButton extends StatelessWidget {
   final String label;
   final Color textColor;
   final Color bgColor;
-  final Function() onPressed;
+  final Function()? onPressed;
   const AppButton({
     super.key,
     required this.label,
-    required this.onPressed,
+    this.onPressed,
     this.textColor = AppColors.white,
     this.bgColor = AppColors.btnEnd,
   });
@@ -20,6 +20,8 @@ class AppButton extends StatelessWidget {
       padding: AppConstants.paddingV16,
       shape: RoundedRectangleBorder(borderRadius: AppConstants.borderRadius16),
       onPressed: onPressed,
+      disabledColor: AppColors.grey,
+      disabledTextColor: AppColors.black70,
       minWidth: double.maxFinite,
       color: bgColor,
       child: Text(label, style: AppTextStyle.button(color: textColor)),
