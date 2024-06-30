@@ -1,6 +1,13 @@
 import 'package:todo/domain/validators/regex.dart';
 
 class Validator {
+  static String? nameValidator(String name) {
+    if (name.isEmpty) {
+      return "Name required";
+    }
+    return null;
+  }
+
   static String? emailValidator(String email) {
     if (email.isEmpty) {
       return "Email required";

@@ -7,4 +7,8 @@ class AppStrings {
   static const String signInWithGoogle = "Sign in with Google";
   static const String welcomeBackEnterDetails =
       "Welcome back! Please enter your details";
+  static const String signup = "Sign Up";
+  static const String yourName = "Your Name";
+  static const String signupWelcomeMessage =
+      "Welcome to TodoApp! Let's get you started on your journey to better organization and productivity.";
 }

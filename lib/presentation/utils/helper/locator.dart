@@ -8,11 +8,13 @@ import 'package:todo/domain/repositories/task_repository.dart';
 import 'package:todo/domain/repositories/user_repository.dart';
 import 'package:todo/domain/usecases/authentication/login_usecase.dart';
 import 'package:todo/domain/usecases/authentication/logout_usecase.dart';
+import 'package:todo/domain/usecases/authentication/signup_usecase.dart';
 import 'package:todo/domain/usecases/task/add_task_usecase.dart';
 import 'package:todo/domain/usecases/task/delete_task_usecase.dart';
 import 'package:todo/domain/usecases/task/fetch_task_usecase.dart';
 import 'package:todo/domain/usecases/user/user_usecase.dart';
 import 'package:todo/presentation/pages/authentication/login/bloc/login_cubit.dart';
+import 'package:todo/presentation/pages/authentication/signup/bloc/signup_cubit.dart';
 import 'package:todo/presentation/pages/dashboard/bloc/dashboard_cubit.dart';
 import 'package:todo/presentation/pages/profile/bloc/profile_cubit.dart';
 
@@ -29,6 +31,11 @@ void setupLocator() {
       () => LogoutUseCase(locator<AuthRepository>()));
 
   locator.registerLazySingleton<LoginCubit>(() => LoginCubit());
+
+  locator.registerLazySingleton<SignupUseCase>(() =>
+      SignupUseCase(locator<AuthRepository>(), locator<UserRepository>()));
+
+  locator.registerLazySingleton<SignUpCubit>(() => SignUpCubit());
 
   //User
   locator.registerSingleton(User());

@@ -47,8 +47,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> signUpWithEmailAndPassword(
-      String name, String email, String password) async {
+  Future<void> signUpWithEmailAndPassword(String email, String password) async {
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,

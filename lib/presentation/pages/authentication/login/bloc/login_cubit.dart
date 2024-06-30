@@ -1,6 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo/data/repositories/auth_repository_impl.dart';
-import 'package:todo/domain/repositories/auth_repository.dart';
 import 'package:todo/domain/usecases/authentication/login_usecase.dart';
 import 'package:todo/domain/validators/validator.dart';
 import 'package:todo/presentation/utils/helper/locator.dart';
@@ -8,7 +6,6 @@ import 'package:todo/presentation/utils/helper/locator.dart';
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  AuthRepository authRepository = AuthRepositoryImpl();
   String email = "";
   String password = "";
   String? emailError;
