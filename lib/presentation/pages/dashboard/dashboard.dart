@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo/presentation/pages/create_task/create_task.dart';
 import 'package:todo/presentation/pages/dashboard/bloc/dashboard_cubit.dart';
 import 'package:todo/presentation/pages/dashboard/components/header.dart';
 import 'package:todo/presentation/pages/dashboard/components/tasks_list.dart';
@@ -27,6 +28,10 @@ class Dashboard extends StatelessWidget {
         } else if (state is TaskDeleted) {
           LoadingDialog.dismiss(context);
           SnackBarMessage.success(context, "Task is deleted");
+        } else if (state is TaskCreated) {
+          LoadingDialog.dismiss(context);
+          SnackBarMessage.success(context, "Task created");
+          Navigator.pop(context);
         }
       },
       bloc: locator<DashboardCubit>(),
@@ -35,30 +40,43 @@ class Dashboard extends StatelessWidget {
           floatingActionButton: FloatingActionButton(
             backgroundColor: AppColors.primary,
             onPressed: () {
-              locator<DashboardCubit>().addTask();
+              showModalBottomSheet(
+                context: context,
+                showDragHandle: true,
+                enableDrag: true,
+                isScrollControlled: true,
+                useRootNavigator: true,
+                useSafeArea: true,
+                backgroundColor: AppColors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: AppConstants.borderRadius16),
+                builder: (context) => const CreateTaskScreen(),
+              );
             },
             tooltip: "Add new task",
             child: const Icon(Icons.add, color: AppColors.white),
           ),
           body: SafeArea(
+              bottom: false,
               child: Padding(
-            padding: AppConstants.padding32,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Header(),
-                AppConstants.gap20,
-                AppSearchBar(
-                    hint: AppStrings.searchTaskHere,
-                    onSearch: (query) {
-                      //TODO: Perform search
-                    }),
-                AppConstants.gap20,
-                TasksList(tasks: locator<DashboardCubit>().tasks)
-              ],
-            ),
-          )),
+                padding: AppConstants.paddingH16,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AppConstants.gap20,
+                    const Header(),
+                    AppConstants.gap20,
+                    AppSearchBar(
+                        hint: AppStrings.searchTaskHere,
+                        onSearch: (query) {
+                          //TODO: Perform search
+                        }),
+                    AppConstants.gap20,
+                    TasksList(tasks: locator<DashboardCubit>().tasks)
+                  ],
+                ),
+              )),
         );
       },
     );

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:todo/domain/enums/greet.dart';
+import 'package:todo/domain/usecases/user/user_usecase.dart';
 import 'package:todo/presentation/pages/dashboard/components/profile_picture.dart';
 import 'package:todo/presentation/styles/styles.dart';
+import 'package:todo/presentation/utils/helper/locator.dart';
 
 class Header extends StatelessWidget {
   const Header({super.key});
@@ -17,7 +19,8 @@ class Header extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text("${Greet.message},", style: AppTextStyle.h4()),
-            Text("Bhoomit", style: AppTextStyle.h4Normal()),
+            Text(locator<UserUsecase>().getUser().name,
+                style: AppTextStyle.h4Normal()),
           ],
         ),
         const ProfilePicture(),

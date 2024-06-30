@@ -6,7 +6,7 @@ class UserUsecase {
 
   UserUsecase(this.repository);
 
-  Future<User> call() async {
-    return await repository.fetchCurrentUser();
+  User getUser() {
+    return repository.fetchCurrentUser();
   }
 }

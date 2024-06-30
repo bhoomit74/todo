@@ -11,7 +11,7 @@ class TaskRepositoryImpl implements TaskRepository {
   @override
   Future<void> addTask(Task task) async {
     try {
-      var user = await locator<UserUsecase>().call();
+      var user = locator<UserUsecase>().getUser();
       TaskModel taskModel = TaskMapper.toModel(task);
       dbPath
           .doc(user.id)
@@ -27,7 +27,7 @@ class TaskRepositoryImpl implements TaskRepository {
   Future<List<Task>> fetchTasks() async {
     List<Task> tasks = [];
     try {
-      var user = await locator<UserUsecase>().call();
+      var user = locator<UserUsecase>().getUser();
       var value = await dbPath.doc(user.id).collection('tasks').get();
 
       for (var doc in value.docs) {
@@ -44,7 +44,7 @@ class TaskRepositoryImpl implements TaskRepository {
   @override
   Future<void> deleteTask(Task task) async {
     try {
-      var user = await locator<UserUsecase>().call();
+      var user = locator<UserUsecase>().getUser();
       await dbPath.doc(user.id).collection('tasks').doc(task.id).delete();
     } catch (e) {
       throw e.toString();

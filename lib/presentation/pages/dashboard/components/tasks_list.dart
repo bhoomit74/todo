@@ -19,8 +19,7 @@ class TasksList extends StatelessWidget {
           Flexible(
             child: ListView.separated(
               itemCount: tasks.length,
-              itemBuilder: (context, index) =>
-                  TaskTile(key: ValueKey(tasks[index].id), task: tasks[index]),
+              itemBuilder: (context, index) => TaskTile(task: tasks[index]),
               separatorBuilder: (context, index) => AppConstants.gap8,
             ),
           )

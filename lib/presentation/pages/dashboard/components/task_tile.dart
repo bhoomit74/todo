@@ -12,16 +12,15 @@ class TaskTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      key: ValueKey(task.id),
       borderRadius: AppConstants.borderRadius16,
       child: Dismissible(
-        key: ValueKey(task.id),
+        key: UniqueKey(),
         direction: DismissDirection.endToStart,
         background: Container(
             padding: AppConstants.padding16,
-            decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                    colors: [Colors.red, Colors.deepOrange])),
+            decoration: const BoxDecoration(
+                gradient:
+                    LinearGradient(colors: [Colors.red, Colors.deepOrange])),
             child: const Align(
                 alignment: Alignment.centerRight, child: Icon(Icons.delete))),
         onDismissed: (direction) {
@@ -31,8 +30,8 @@ class TaskTile extends StatelessWidget {
         },
         child: Container(
           padding: AppConstants.padding16,
-          decoration: BoxDecoration(
-              gradient: const LinearGradient(
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [AppColors.black70, AppColors.black])),

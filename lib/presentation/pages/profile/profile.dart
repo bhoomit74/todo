@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo/domain/entities/user.dart';
+import 'package:todo/domain/usecases/user/user_usecase.dart';
 import 'package:todo/presentation/pages/authentication/login/login_screen.dart';
 import 'package:todo/presentation/pages/dashboard/components/profile_picture.dart';
 import 'package:todo/presentation/pages/profile/bloc/profile_cubit.dart';
@@ -44,11 +46,11 @@ class ProfileScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   ProfilePicture(
-                    profileUrl: locator<ProfileCubit>().user.profileUrl,
+                    profileUrl: locator<User>().profileUrl,
                     size: 120,
                   ),
                   AppConstants.gap20,
-                  Text(locator<ProfileCubit>().user.name,
+                  Text(locator<UserUsecase>().getUser().name,
                       style: AppTextStyle.h4()),
                   AppConstants.gap32,
                   AppButton(

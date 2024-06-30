@@ -6,7 +6,7 @@ import 'package:todo/domain/repositories/user_repository.dart';
 
 class UserRepositoryImpl implements UserRepository {
   @override
-  Future<User> fetchCurrentUser() async {
+  User fetchCurrentUser() {
     try {
       var user = FirebaseAuth.instance.currentUser;
       UserModel userModel = UserModel(

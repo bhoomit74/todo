@@ -23,13 +23,12 @@ class DashboardCubit extends Cubit<DashboardState> {
     }
   }
 
-  addTask() async {
+  addTask(String title, String description) async {
     emit(DashboardLoading());
     try {
-      tasks = await locator<AddTaskUsecase>().call(Task.create(
-          title: "Title ${DateTime.now().second}",
-          description: "Description ${DateTime.now().millisecondsSinceEpoch}"));
-      emit(DashboardSuccess());
+      Task task = Task.create(title: title, description: description);
+      tasks = await locator<AddTaskUsecase>().call(task);
+      emit(TaskCreated());
     } catch (e) {
       emit(DashboardError(e.toString()));
     }
