@@ -17,9 +17,9 @@ class AuthRepositoryImpl implements AuthRepository {
       if (credential.user != null) {
         UserModel userModel = UserModel(
             id: credential.user?.uid ?? "",
-            name: credential.user?.displayName ?? "",
+            name: credential.user?.displayName,
             email: credential.user?.email ?? "",
-            profileUrl: credential.user?.photoURL ?? "",
+            profileUrl: credential.user?.photoURL,
             isEmailVerified: credential.user?.emailVerified ?? false);
 
         return UserMapper.toEntity(userModel);

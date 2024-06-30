@@ -6,7 +6,7 @@ class UserMapper {
     return User(
       id: userModel.id,
       email: userModel.email,
-      name: userModel.name,
+      name: userModel.name ?? "Taskmaster!",
       profileUrl: userModel.profileUrl,
       isEmailVerified: userModel.isEmailVerified,
     );
