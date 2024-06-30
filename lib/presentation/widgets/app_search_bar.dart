@@ -21,10 +21,7 @@ class _AppSearchBarState extends State<AppSearchBar> {
     return AppTextField(
       hint: widget.hint,
       focusedBorderColor: AppColors.primary,
-      prefixIcon: Padding(
-        padding: AppConstants.paddingH16,
-        child: Image.asset(AppImages.search, height: 24, width: 24),
-      ),
+      prefixIcon: Image.asset(AppImages.search, height: 24, width: 24),
       onChanged: (value) {
         _debouncer.run(() => widget.onSearch(value));
       },
