@@ -14,10 +14,10 @@ enum Greet {
       return Greet.morning;
     } else if (hour >= 12 && hour < 17) {
       return Greet.afternoon;
-    } else if (hour >= 17 && hour < 21) {
+    } else if (hour >= 17 && hour < 24) {
       return Greet.evening;
     } else {
-      return Greet.night;
+      return Greet.morning;
     }
   }
 
