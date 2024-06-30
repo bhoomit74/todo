@@ -3,7 +3,7 @@ import 'package:todo/data/repositories/auth_repository_impl.dart';
 import 'package:todo/domain/repositories/auth_repository.dart';
 import 'package:todo/domain/usecases/login_usecase.dart';
 import 'package:todo/domain/validators/validator.dart';
-import 'package:todo/main.dart';
+import 'package:todo/presentation/utils/helper/locator.dart';
 
 part 'login_state.dart';
 
@@ -18,7 +18,7 @@ class LoginCubit extends Cubit<LoginState> {
   void loginWithEmailAndPassword() async {
     emit(LoginLoading());
     try {
-      await getIt<LoginUseCase>().call(email, password);
+      await locator<LoginUseCase>().call(email, password);
       emit(LoginSuccess());
     } catch (e) {
       emit(LoginError(e.toString()));

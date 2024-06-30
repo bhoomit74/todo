@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo/main.dart';
 import 'package:todo/presentation/pages/authentication/login/bloc/login_cubit.dart';
 import 'package:todo/presentation/pages/dashboard/dashboard.dart';
 import 'package:todo/presentation/styles/styles.dart';
 import 'package:todo/presentation/utils/helper/helpers.dart';
+import 'package:todo/presentation/utils/helper/locator.dart';
 import 'package:todo/presentation/widgets/app_button.dart';
 import 'package:todo/presentation/widgets/app_text_field.dart';
 
@@ -25,7 +25,7 @@ class Login extends StatelessWidget {
           SnackBarMessage.error(context, state.message);
         }
       },
-      bloc: getIt<LoginCubit>(),
+      bloc: locator<LoginCubit>(),
       builder: (context, state) {
         return Scaffold(
           body: SafeArea(
@@ -41,8 +41,8 @@ class Login extends StatelessWidget {
                   AppConstants.gap32,
                   AppTextField(
                     hint: AppStrings.email,
-                    error: getIt<LoginCubit>().emailError,
-                    onChanged: getIt<LoginCubit>().onEmailChange,
+                    error: locator<LoginCubit>().emailError,
+                    onChanged: locator<LoginCubit>().onEmailChange,
                     focusedBorderColor: AppColors.primary,
                     textInputType: TextInputType.emailAddress,
                     prefixIcon: const Padding(
@@ -54,10 +54,10 @@ class Login extends StatelessWidget {
                   AppConstants.gap8,
                   AppTextField(
                     hint: AppStrings.password,
-                    error: getIt<LoginCubit>().passwordError,
+                    error: locator<LoginCubit>().passwordError,
                     focusedBorderColor: AppColors.primary,
                     obscureText: true,
-                    onChanged: getIt<LoginCubit>().onPasswordChange,
+                    onChanged: locator<LoginCubit>().onPasswordChange,
                     textInputType: TextInputType.visiblePassword,
                     prefixIcon: const Padding(
                       padding: AppConstants.paddingH16,
@@ -67,15 +67,15 @@ class Login extends StatelessWidget {
                   AppConstants.gap32,
                   AppButton(
                       label: AppStrings.login,
-                      onPressed: getIt<LoginCubit>().isLoginFormValid
-                          ? getIt<LoginCubit>().loginWithEmailAndPassword
+                      onPressed: locator<LoginCubit>().isLoginFormValid
+                          ? locator<LoginCubit>().loginWithEmailAndPassword
                           : null),
                   AppConstants.gap32,
                   const Divider(color: AppColors.lightGrey),
                   AppConstants.gap32,
                   AppButton(
                       label: AppStrings.signInWithGoogle,
-                      onPressed: getIt<LoginCubit>().loginWithGoogle,
+                      onPressed: locator<LoginCubit>().loginWithGoogle,
                       bgColor: AppColors.white,
                       textColor: AppColors.black),
                 ],
