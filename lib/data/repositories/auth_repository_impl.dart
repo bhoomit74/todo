@@ -37,8 +37,13 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<void> loginWithGoogle() async {}
 
   @override
-  Future<void> logout() async {
-    FirebaseAuth.instance.signOut();
+  Future<bool> logout() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
   @override

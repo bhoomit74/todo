@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/data/repositories/auth_repository_impl.dart';
 import 'package:todo/domain/repositories/auth_repository.dart';
-import 'package:todo/domain/usecases/login_usecase.dart';
+import 'package:todo/domain/usecases/authentication/login_usecase.dart';
 import 'package:todo/domain/validators/validator.dart';
 import 'package:todo/presentation/utils/helper/locator.dart';
 
