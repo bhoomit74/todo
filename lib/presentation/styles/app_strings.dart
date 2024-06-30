@@ -11,4 +11,6 @@ class AppStrings {
   static const String yourName = "Your Name";
   static const String signupWelcomeMessage =
       "Welcome to TodoApp! Let's get you started on your journey to better organization and productivity.";
+  static const String taskNotFound =
+      "You're all set! No tasks for now. Add a new task to start organizing your day!";
 }

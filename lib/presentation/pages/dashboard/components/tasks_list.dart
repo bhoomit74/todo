@@ -11,18 +11,26 @@ class TasksList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flexible(
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text("Tasks", style: AppTextStyle.h4()),
           AppConstants.gap8,
-          Flexible(
-            child: ListView.separated(
-              itemCount: tasks.length,
-              itemBuilder: (context, index) => TaskTile(task: tasks[index]),
-              separatorBuilder: (context, index) => AppConstants.gap8,
-            ),
-          )
+          tasks.isNotEmpty
+              ? Flexible(
+                  child: ListView.separated(
+                    itemCount: tasks.length,
+                    itemBuilder: (context, index) =>
+                        TaskTile(task: tasks[index]),
+                    separatorBuilder: (context, index) => AppConstants.gap8,
+                  ),
+                )
+              : Expanded(
+                  child: Center(
+                    child: Text(AppStrings.taskNotFound,
+                        textAlign: TextAlign.center,
+                        style: AppTextStyle.body(color: AppColors.black70)),
+                  ),
+                )
         ],
       ),
     );
