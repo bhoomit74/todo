@@ -17,7 +17,7 @@ class TaskTile extends StatelessWidget {
       borderRadius: AppConstants.borderRadius16,
       child: Dismissible(
         key: UniqueKey(),
-        direction: DismissDirection.horizontal,
+        direction: DismissDirection.endToStart,
         background: Container(
             padding: AppConstants.padding16,
             decoration: const BoxDecoration(
