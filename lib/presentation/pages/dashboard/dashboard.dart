@@ -7,6 +7,7 @@ import 'package:todo/presentation/pages/dashboard/components/tasks_list.dart';
 import 'package:todo/presentation/styles/styles.dart';
 import 'package:todo/presentation/utils/helper/helpers.dart';
 import 'package:todo/presentation/utils/helper/locator.dart';
+import 'package:todo/presentation/utils/helper/show_app_bottom_sheet.dart';
 import 'package:todo/presentation/widgets/app_search_bar.dart';
 
 class Dashboard extends StatelessWidget {
@@ -25,10 +26,14 @@ class Dashboard extends StatelessWidget {
           LoadingDialog.dismiss(context);
         } else if (state is TaskDeleted) {
           LoadingDialog.dismiss(context);
-          SnackBarMessage.success(context, "Task is deleted");
+          SnackBarMessage.success(context, "Task deleted");
         } else if (state is TaskCreated) {
           LoadingDialog.dismiss(context);
           SnackBarMessage.success(context, "Task created");
+          Navigator.pop(context);
+        } else if (state is TaskUpdated) {
+          LoadingDialog.dismiss(context);
+          SnackBarMessage.success(context, "Task updated");
           Navigator.pop(context);
         }
       },
@@ -38,18 +43,8 @@ class Dashboard extends StatelessWidget {
           floatingActionButton: FloatingActionButton(
             backgroundColor: AppColors.primary,
             onPressed: () {
-              showModalBottomSheet(
-                context: context,
-                showDragHandle: true,
-                enableDrag: true,
-                isScrollControlled: true,
-                useRootNavigator: true,
-                useSafeArea: true,
-                backgroundColor: AppColors.white,
-                shape: RoundedRectangleBorder(
-                    borderRadius: AppConstants.borderRadius16),
-                builder: (context) => const CreateTaskScreen(),
-              );
+              showAppBottomSheet(
+                  context: context, widget: const CreateTaskScreen());
             },
             tooltip: "Add new task",
             child: const Icon(Icons.add, color: AppColors.white),

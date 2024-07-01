@@ -12,6 +12,8 @@ final class TaskDeleted extends DashboardState {}
 
 final class TaskCreated extends DashboardState {}
 
+final class TaskUpdated extends DashboardState {}
+
 final class DashboardError extends DashboardState {
   final String message;
   DashboardError(this.message);

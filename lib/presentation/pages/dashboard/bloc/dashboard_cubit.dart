@@ -34,6 +34,16 @@ class DashboardCubit extends Cubit<DashboardState> {
     }
   }
 
+  updateTask(Task task) async {
+    emit(DashboardLoading());
+    try {
+      tasks = await locator<AddTaskUsecase>().call(task);
+      emit(TaskUpdated());
+    } catch (e) {
+      emit(DashboardError(e.toString()));
+    }
+  }
+
   deleteTask(Task task) async {
     emit(DashboardLoading());
     try {

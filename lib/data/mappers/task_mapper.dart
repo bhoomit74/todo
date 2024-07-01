@@ -1,5 +1,6 @@
 import 'package:todo/data/models/task_model.dart';
 import 'package:todo/domain/entities/task.dart';
+import 'package:todo/domain/enums/status.dart';
 import 'package:todo/domain/helpers/date_format.dart';
 
 class TaskMapper {
@@ -8,7 +9,7 @@ class TaskMapper {
         id: taskModel.id ?? '0',
         title: taskModel.title ?? "",
         description: taskModel.description ?? "",
-        status: taskModel.status ?? "Pending",
+        status: Status.fromName(taskModel.status),
         timestamp: taskModel.timestamp ?? 0,
         date: DateFormatter().getDateFromTimeStamp(taskModel.timestamp ?? 0));
   }
@@ -18,7 +19,7 @@ class TaskMapper {
         id: task.id,
         title: task.title,
         description: task.description,
-        status: task.status,
+        status: task.status.name,
         timestamp: task.timestamp);
   }
 }

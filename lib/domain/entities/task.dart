@@ -1,9 +1,11 @@
+import 'package:todo/domain/enums/status.dart';
+
 class Task {
   final String id;
   final String title;
   final String description;
   final String date;
-  final String status;
+  final Status status;
   final int timestamp;
 
   const Task(
@@ -12,7 +14,7 @@ class Task {
       this.description = "-",
       this.timestamp = 0,
       this.date = "-",
-      this.status = "-"});
+      this.status = Status.pending});
 
   factory Task.create({required String title, required String description}) {
     return Task(
@@ -20,6 +22,15 @@ class Task {
         title: title,
         description: description,
         timestamp: DateTime.now().millisecondsSinceEpoch,
-        status: "Pending");
+        status: Status.pending);
+  }
+
+  Task copyWith({String? title, String? description, Status? status}) {
+    return Task(
+        id: id,
+        title: title ?? this.title,
+        description: description ?? this.description,
+        timestamp: timestamp,
+        status: status ?? this.status);
   }
 }

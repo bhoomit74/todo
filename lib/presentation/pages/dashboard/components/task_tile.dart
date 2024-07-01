@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:todo/domain/entities/task.dart';
+import 'package:todo/presentation/pages/create_task/edit_task.dart';
 import 'package:todo/presentation/pages/dashboard/bloc/dashboard_cubit.dart';
 import 'package:todo/presentation/styles/styles.dart';
 import 'package:todo/presentation/utils/helper/locator.dart';
+import 'package:todo/presentation/utils/helper/show_app_bottom_sheet.dart';
 import 'package:todo/presentation/widgets/app_label.dart';
 
 class TaskTile extends StatelessWidget {
@@ -15,7 +17,7 @@ class TaskTile extends StatelessWidget {
       borderRadius: AppConstants.borderRadius16,
       child: Dismissible(
         key: UniqueKey(),
-        direction: DismissDirection.endToStart,
+        direction: DismissDirection.horizontal,
         background: Container(
             padding: AppConstants.padding16,
             decoration: const BoxDecoration(
@@ -63,10 +65,23 @@ class TaskTile extends StatelessWidget {
                       )
                     ],
                   ),
-                  AppLabel(
-                    label: task.status,
-                    bgColor: AppColors.green,
-                    textColor: AppColors.white,
+                  Row(
+                    children: [
+                      AppLabel(
+                        label: "Edit",
+                        bgColor: AppColors.white,
+                        textColor: AppColors.black70,
+                        onPressed: () => showAppBottomSheet(
+                            context: context,
+                            widget: EditTaskScreen(task: task)),
+                      ),
+                      AppConstants.gap4,
+                      AppLabel(
+                        label: task.status.name,
+                        bgColor: AppColors.green,
+                        textColor: AppColors.white,
+                      ),
+                    ],
                   )
                 ],
               ),
