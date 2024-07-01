@@ -18,9 +18,11 @@ import 'package:todo/presentation/pages/authentication/signup/bloc/signup_cubit.
 import 'package:todo/presentation/pages/dashboard/bloc/dashboard_cubit.dart';
 import 'package:todo/presentation/pages/profile/bloc/profile_cubit.dart';
 
-final GetIt locator = GetIt.instance;
+late GetIt locator;
 
 void setupLocator() {
+  locator = GetIt.asNewInstance();
+
   //Authentication
   locator.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl());
 

@@ -11,6 +11,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     emit(ProfileLoading());
     try {
       await locator<LogoutUseCase>().logout();
+      setupLocator();
       emit(ProfileLogout());
     } catch (e) {
       emit(ProfileError(e.toString()));
