@@ -5,6 +5,7 @@ import 'package:todo/domain/usecases/user/user_usecase.dart';
 import 'package:todo/presentation/pages/authentication/login/login_screen.dart';
 import 'package:todo/presentation/pages/dashboard/components/profile_picture.dart';
 import 'package:todo/presentation/pages/profile/bloc/profile_cubit.dart';
+import 'package:todo/presentation/pages/profile/components/logout_confirmation_dialog.dart';
 import 'package:todo/presentation/styles/styles.dart';
 import 'package:todo/presentation/utils/helper/helpers.dart';
 import 'package:todo/presentation/utils/helper/locator.dart';
@@ -52,10 +53,14 @@ class ProfileScreen extends StatelessWidget {
                   AppConstants.gap20,
                   Text(locator<UserUsecase>().getUser().name,
                       style: AppTextStyle.h4()),
+                  AppConstants.gap4,
+                  Text(locator<UserUsecase>().getUser().email,
+                      style: AppTextStyle.body(color: AppColors.black70)),
                   AppConstants.gap32,
                   AppButton(
-                      label: "Logout",
-                      onPressed: locator<ProfileCubit>().logout)
+                    label: "Logout",
+                    onPressed: () => LogoutConfirmationDialog.show(context),
+                  )
                 ],
               ),
             ),
