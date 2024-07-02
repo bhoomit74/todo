@@ -71,4 +71,19 @@ class DashboardCubit extends Cubit<DashboardState> {
     }
     emit(TaskFiltered());
   }
+
+  searchTask(String query) {
+    if (query.isEmpty) {
+      //Show all task;
+      filterTask(status: filter);
+      emit(TaskFetched());
+      return;
+    }
+    tasks = tasks
+        .where((element) =>
+            element.title.toLowerCase().contains(query.toLowerCase()) ||
+            element.description.toLowerCase().contains(query.toLowerCase()))
+        .toList();
+    emit(TaskFetched());
+  }
 }

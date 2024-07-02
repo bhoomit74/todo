@@ -63,7 +63,7 @@ class Dashboard extends StatelessWidget {
                     AppSearchBar(
                         hint: AppStrings.searchTaskHere,
                         onSearch: (query) {
-                          //TODO: Perform search
+                          locator<DashboardCubit>().searchTask(query);
                         }),
                     AppConstants.gap20,
                     TasksList(tasks: locator<DashboardCubit>().tasks)
