@@ -20,51 +20,55 @@ class LoginPage extends StatelessWidget {
           body: SafeArea(
             child: Padding(
               padding: AppConstants.padding32,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(AppStrings.login, style: AppTextStyle.h2()),
-                  AppConstants.gap8,
-                  Text(AppStrings.welcomeBackEnterDetails,
-                      style: AppTextStyle.body(color: AppColors.grey)),
-                  AppConstants.gap32,
-                  AppTextField(
-                    hint: AppStrings.email,
-                    error: cubit.emailError,
-                    onChanged: cubit.onEmailChange,
-                    focusedBorderColor: AppColors.primary,
-                    textInputType: TextInputType.emailAddress,
-                    prefixIcon: const Icon(Icons.email_rounded,
-                        color: AppColors.primary),
+              child: Center(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(AppStrings.login, style: AppTextStyle.h2()),
+                      AppConstants.gap8,
+                      Text(AppStrings.welcomeBackEnterDetails,
+                          style: AppTextStyle.body(color: AppColors.grey)),
+                      AppConstants.gap32,
+                      AppTextField(
+                        hint: AppStrings.email,
+                        error: cubit.emailError,
+                        onChanged: cubit.onEmailChange,
+                        focusedBorderColor: AppColors.primary,
+                        textInputType: TextInputType.emailAddress,
+                        prefixIcon: const Icon(Icons.email_rounded,
+                            color: AppColors.primary),
+                      ),
+                      AppConstants.gap8,
+                      AppTextField(
+                        hint: AppStrings.password,
+                        error: cubit.passwordError,
+                        focusedBorderColor: AppColors.primary,
+                        obscureText: true,
+                        onChanged: cubit.onPasswordChange,
+                        textInputType: TextInputType.visiblePassword,
+                        prefixIcon: const Icon(Icons.lock_rounded,
+                            color: AppColors.primary),
+                      ),
+                      AppConstants.gap32,
+                      AppButton(
+                          label: AppStrings.login,
+                          onPressed: cubit.isLoginFormValid
+                              ? cubit.loginWithEmailAndPassword
+                              : null),
+                      AppConstants.gap32,
+                      GestureDetector(
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => const SignupScreen(),
+                              )),
+                          child: Text("Don't have account? Sign Up",
+                              style: AppTextStyle.bodyBold(
+                                  color: AppColors.primary))),
+                    ],
                   ),
-                  AppConstants.gap8,
-                  AppTextField(
-                    hint: AppStrings.password,
-                    error: cubit.passwordError,
-                    focusedBorderColor: AppColors.primary,
-                    obscureText: true,
-                    onChanged: cubit.onPasswordChange,
-                    textInputType: TextInputType.visiblePassword,
-                    prefixIcon: const Icon(Icons.lock_rounded,
-                        color: AppColors.primary),
-                  ),
-                  AppConstants.gap32,
-                  AppButton(
-                      label: AppStrings.login,
-                      onPressed: cubit.isLoginFormValid
-                          ? cubit.loginWithEmailAndPassword
-                          : null),
-                  AppConstants.gap32,
-                  GestureDetector(
-                      onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => const SignupScreen(),
-                          )),
-                      child: Text("Don't have account? Sign Up",
-                          style:
-                              AppTextStyle.bodyBold(color: AppColors.primary))),
-                ],
+                ),
               ),
             ),
           ),
