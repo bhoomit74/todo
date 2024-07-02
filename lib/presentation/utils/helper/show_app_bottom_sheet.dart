@@ -11,6 +11,10 @@ showAppBottomSheet({required BuildContext context, required Widget widget}) {
     useSafeArea: true,
     backgroundColor: AppColors.white,
     shape: RoundedRectangleBorder(borderRadius: AppConstants.borderRadius16),
-    builder: (context) => widget,
+    builder: (context) => Padding(
+      padding:
+          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      child: widget,
+    ),
   );
 }
