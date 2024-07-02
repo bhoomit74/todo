@@ -16,6 +16,8 @@ final class TaskUpdated extends DashboardState {}
 
 final class TaskFiltered extends DashboardState {}
 
+final class TitleValidationChange extends DashboardState {}
+
 final class DashboardError extends DashboardState {
   final String message;
   DashboardError(this.message);

@@ -12,6 +12,8 @@ class DashboardCubit extends Cubit<DashboardState> {
   List<Task> _tasks = [];
   List<Task> tasks = [];
   Status? filter;
+
+  String? titleError;
   DashboardCubit() : super(DashboardInitial()) {
     fetchTasks();
   }
@@ -87,5 +89,18 @@ class DashboardCubit extends Cubit<DashboardState> {
             element.description.toLowerCase().contains(query.toLowerCase()))
         .toList();
     emit(TaskFetched());
+  }
+
+  onTitleChange(String title) {
+    if (title.isEmpty) {
+      titleError = "Title is required";
+    } else {
+      titleError = null;
+    }
+    emit(TitleValidationChange());
+  }
+
+  bool isTaskValid(String title) {
+    return title.isNotEmpty && titleError == null;
   }
 }
