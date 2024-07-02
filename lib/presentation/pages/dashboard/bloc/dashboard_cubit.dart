@@ -17,6 +17,8 @@ class DashboardCubit extends Cubit<DashboardState> {
   }
 
   fetchTasks() async {
+    //add delay to build widget
+    await Future.delayed(Duration.zero);
     emit(DashboardLoading());
     try {
       _tasks = await locator<FetchTaskUsecase>().call();
