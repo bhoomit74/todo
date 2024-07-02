@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo/presentation/pages/create_task/create_task.dart';
 import 'package:todo/presentation/pages/dashboard/bloc/dashboard_cubit.dart';
+import 'package:todo/presentation/pages/dashboard/components/add_task_floating_button.dart';
 import 'package:todo/presentation/pages/dashboard/components/header.dart';
 import 'package:todo/presentation/pages/dashboard/components/tasks_list.dart';
 import 'package:todo/presentation/styles/styles.dart';
 import 'package:todo/presentation/utils/helper/helpers.dart';
 import 'package:todo/presentation/utils/helper/locator.dart';
-import 'package:todo/presentation/utils/helper/show_app_bottom_sheet.dart';
 import 'package:todo/presentation/widgets/app_search_bar.dart';
 
 class Dashboard extends StatelessWidget {
@@ -40,15 +39,7 @@ class Dashboard extends StatelessWidget {
       bloc: locator<DashboardCubit>(),
       builder: (context, state) {
         return Scaffold(
-          floatingActionButton: FloatingActionButton(
-            backgroundColor: AppColors.primary,
-            onPressed: () {
-              showAppBottomSheet(
-                  context: context, widget: const CreateTaskScreen());
-            },
-            tooltip: "Add new task",
-            child: const Icon(Icons.add, color: AppColors.white),
-          ),
+          floatingActionButton: const AddTaskFloatingButton(),
           body: SafeArea(
               bottom: false,
               child: Padding(
@@ -62,9 +53,7 @@ class Dashboard extends StatelessWidget {
                     AppConstants.gap20,
                     AppSearchBar(
                         hint: AppStrings.searchTaskHere,
-                        onSearch: (query) {
-                          locator<DashboardCubit>().searchTask(query);
-                        }),
+                        onSearch: locator<DashboardCubit>().searchTask),
                     AppConstants.gap20,
                     TasksList(tasks: locator<DashboardCubit>().tasks)
                   ],
