@@ -43,6 +43,4 @@ Follow these steps to set up Firebase for your project:
 
 
 ## Screenshots
-![Dashboard](https://github.com/bhoomit74/todo/blob/main/assets/screenshots/dashboard.png)
-![Dashboard](https://github.com/bhoomit74/todo/blob/main/assets/screenshots/addTask.png)
-![Dashboard](https://github.com/bhoomit74/todo/blob/main/assets/screenshots/EditTask.png)
+![Dashboard](https://github.com/bhoomit74/todo/blob/main/assets/screenshots/todo.png)
