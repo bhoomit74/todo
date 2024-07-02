@@ -17,10 +17,10 @@ class TasksList extends StatelessWidget {
           Text("Tasks", style: AppTextStyle.h4()),
           AppConstants.gap8,
           const StatusFilter(),
-          AppConstants.gap8,
           tasks.isNotEmpty
               ? Flexible(
                   child: ListView.separated(
+                    physics: const BouncingScrollPhysics(),
                     itemCount: tasks.length,
                     itemBuilder: (context, index) =>
                         TaskTile(task: tasks[index]),
