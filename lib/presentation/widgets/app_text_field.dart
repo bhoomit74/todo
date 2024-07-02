@@ -67,10 +67,12 @@ class _AppTextFieldState extends State<AppTextField> {
           border: _border,
           focusedBorder: _focusedBorder,
           enabledBorder: _border,
-          prefixIcon: Padding(
-            padding: AppConstants.paddingH16,
-            child: widget.prefixIcon,
-          ),
+          prefixIcon: widget.prefixIcon != null
+              ? Padding(
+                  padding: AppConstants.paddingH16,
+                  child: widget.prefixIcon,
+                )
+              : null,
           suffixIcon: widget.suffixIcon ??
               (widget.textInputType == TextInputType.visiblePassword
                   ? VisibilityToggle(
