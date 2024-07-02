@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:todo/domain/entities/task.dart';
-import 'package:todo/presentation/pages/create_task/edit_task.dart';
 import 'package:todo/presentation/pages/dashboard/bloc/dashboard_cubit.dart';
-import 'package:todo/presentation/pages/dashboard/components/update_status.dart';
+import 'package:todo/presentation/pages/dashboard/components/date_view.dart';
+import 'package:todo/presentation/pages/tasks/edit_task.dart';
+import 'package:todo/presentation/pages/tasks/update_task_status.dart';
 import 'package:todo/presentation/styles/styles.dart';
 import 'package:todo/presentation/utils/helper/locator.dart';
 import 'package:todo/presentation/utils/helper/show_app_bottom_sheet.dart';
 import 'package:todo/presentation/widgets/app_label.dart';
+import 'package:todo/presentation/widgets/dismissible_tile.dart';
 
 class TaskTile extends StatelessWidget {
   final Task task;
@@ -16,21 +18,8 @@ class TaskTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: AppConstants.borderRadius16,
-      child: Dismissible(
-        key: UniqueKey(),
-        direction: DismissDirection.endToStart,
-        background: Container(
-            padding: AppConstants.padding16,
-            decoration: const BoxDecoration(
-                gradient:
-                    LinearGradient(colors: [Colors.red, Colors.deepOrange])),
-            child: const Align(
-                alignment: Alignment.centerRight, child: Icon(Icons.delete))),
-        onDismissed: (direction) {
-          if (direction == DismissDirection.endToStart) {
-            locator<DashboardCubit>().deleteTask(task);
-          }
-        },
+      child: DismissibleTile(
+        onDelete: () => locator<DashboardCubit>().deleteTask(task),
         child: Container(
           padding: AppConstants.padding16,
           decoration: const BoxDecoration(
@@ -55,17 +44,7 @@ class TaskTile extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    children: [
-                      const Icon(Icons.calendar_month_rounded,
-                          color: AppColors.grey, size: 24),
-                      AppConstants.gap4,
-                      Text(
-                        task.date,
-                        style: AppTextStyle.caption(color: AppColors.grey),
-                      )
-                    ],
-                  ),
+                  DateView(date: task.date),
                   Row(
                     children: [
                       AppLabel(
@@ -79,7 +58,8 @@ class TaskTile extends StatelessWidget {
                       AppConstants.gap4,
                       GestureDetector(
                         onTap: () => showAppBottomSheet(
-                            context: context, widget: UpdateStatus(task: task)),
+                            context: context,
+                            widget: UpdateTaskStatus(task: task)),
                         child: AppLabel(
                           label: task.status.name,
                           bgColor: AppColors.green,
