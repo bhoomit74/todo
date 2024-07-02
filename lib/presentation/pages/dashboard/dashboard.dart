@@ -22,7 +22,7 @@ class Dashboard extends StatelessWidget {
         } else if (state is DashboardError) {
           LoadingDialog.dismiss(context);
           SnackBarMessage.error(context, state.message);
-        } else if (state is DashboardSuccess) {
+        } else if (state is TaskFetched) {
           LoadingDialog.dismiss(context);
         } else if (state is TaskDeleted) {
           LoadingDialog.dismiss(context);
