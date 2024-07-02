@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo/domain/entities/task.dart';
 import 'package:todo/presentation/pages/create_task/edit_task.dart';
 import 'package:todo/presentation/pages/dashboard/bloc/dashboard_cubit.dart';
+import 'package:todo/presentation/pages/dashboard/components/update_status.dart';
 import 'package:todo/presentation/styles/styles.dart';
 import 'package:todo/presentation/utils/helper/locator.dart';
 import 'package:todo/presentation/utils/helper/show_app_bottom_sheet.dart';
@@ -76,10 +77,14 @@ class TaskTile extends StatelessWidget {
                             widget: EditTaskScreen(task: task)),
                       ),
                       AppConstants.gap4,
-                      AppLabel(
-                        label: task.status.name,
-                        bgColor: AppColors.green,
-                        textColor: AppColors.white,
+                      GestureDetector(
+                        onTap: () => showAppBottomSheet(
+                            context: context, widget: UpdateStatus(task: task)),
+                        child: AppLabel(
+                          label: task.status.name,
+                          bgColor: AppColors.green,
+                          textColor: AppColors.white,
+                        ),
                       ),
                     ],
                   )
