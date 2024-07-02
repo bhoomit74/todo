@@ -18,7 +18,7 @@ class AppChip extends StatelessWidget {
       child: Chip(
         label: Text(label,
             style: isSelected ? AppTextStyle.activeChip : AppTextStyle.chip),
-        backgroundColor: isSelected ? AppColors.blue100 : Colors.transparent,
+        backgroundColor: isSelected ? AppColors.primary : AppColors.blue100,
         side: const BorderSide(color: Colors.transparent, width: 0),
         padding: AppConstants.padding14,
         shape:

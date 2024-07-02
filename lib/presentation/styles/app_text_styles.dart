@@ -34,8 +34,8 @@ class AppTextStyle {
       fontWeight: FontWeight.bold,
       color: color ?? AppColors.white);
 
-  static TextStyle activeChip = bodyBold(color: AppColors.primary);
-  static TextStyle chip = body(color: AppColors.grey);
+  static TextStyle activeChip = bodyBold(color: AppColors.white);
+  static TextStyle chip = body(color: AppColors.black70);
 
   static TextStyle style(
           {Color? color,
