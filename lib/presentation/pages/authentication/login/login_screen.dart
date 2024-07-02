@@ -33,6 +33,6 @@ class Login extends StatelessWidget {
 
   navigateToDashboard(BuildContext context) {
     Navigator.pushAndRemoveUntil(context,
-        MaterialPageRoute(builder: (_) => const Dashboard()), (route) => true);
+        MaterialPageRoute(builder: (_) => const Dashboard()), (route) => false);
   }
 }

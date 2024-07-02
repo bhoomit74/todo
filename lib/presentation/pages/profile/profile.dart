@@ -28,7 +28,7 @@ class ProfileScreen extends StatelessWidget {
           Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(builder: (_) => const Login()),
-              (route) => true);
+              (route) => false);
         } else if (state is ProfileSuccess) {
           LoadingDialog.dismiss(context);
         }
