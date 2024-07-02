@@ -17,19 +17,31 @@ class StatusFilter extends StatelessWidget {
       builder: (context, state) {
         return Padding(
           padding: AppConstants.paddingV16,
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-            AppChip(
-              label: "All",
-              onPressed: () => locator<DashboardCubit>().filterTask(),
-              isSelected: locator<DashboardCubit>().filter == null,
-            ),
-            ...Status.values.map((status) => AppChip(
-                label: status.name,
-                onPressed: () =>
-                    locator<DashboardCubit>().filterTask(status: status),
-                isSelected: status == locator<DashboardCubit>().filter)),
-          ]),
+          child: SizedBox(
+            height: 48,
+            child: ListView(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                    child: AppChip(
+                      label: "All",
+                      onPressed: () => locator<DashboardCubit>().filterTask(),
+                      isSelected: locator<DashboardCubit>().filter == null,
+                    ),
+                  ),
+                  ...Status.values.map((status) => Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                        child: AppChip(
+                            label: status.name,
+                            onPressed: () => locator<DashboardCubit>()
+                                .filterTask(status: status),
+                            isSelected:
+                                status == locator<DashboardCubit>().filter),
+                      )),
+                ]),
+          ),
         );
       },
     );
