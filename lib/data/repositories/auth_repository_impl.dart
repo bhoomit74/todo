@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart' hide User;
-import 'package:flutter/foundation.dart';
 import 'package:todo/data/mappers/user_mapper.dart';
 import 'package:todo/data/models/user_model.dart';
 import 'package:todo/domain/entities/user.dart';
@@ -55,12 +54,12 @@ class AuthRepositoryImpl implements AuthRepository {
       );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        debugPrint('The password provided is too weak.');
+        throw 'The password provided is too weak.';
       } else if (e.code == 'email-already-in-use') {
-        debugPrint('The account already exists for that email.');
+        throw 'The account already exists for this email.';
       }
     } catch (e) {
-      debugPrint(e.toString());
+      throw e.toString();
     }
   }
 }
