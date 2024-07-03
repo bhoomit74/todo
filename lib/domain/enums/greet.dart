@@ -7,9 +7,7 @@ enum Greet {
   final String greetMessage;
   const Greet(this.greetMessage);
 
-  static Greet get currentGreet {
-    int hour = DateTime.now().hour;
-
+  static Greet currentGreet(int hour) {
     if (hour >= 5 && hour < 12) {
       return Greet.morning;
     } else if (hour >= 12 && hour < 17) {
@@ -21,5 +19,5 @@ enum Greet {
     }
   }
 
-  static String get message => currentGreet.greetMessage;
+  static String get message => currentGreet(DateTime.now().hour).greetMessage;
 }
