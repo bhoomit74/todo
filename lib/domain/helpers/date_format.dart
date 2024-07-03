@@ -6,7 +6,7 @@ class DateFormatter {
       return DateFormat("MMM dd,yyyy hh:mm aa")
           .format(dateTimeFromTimestamp(timestamp));
     } catch (e) {
-      throw e.toString();
+      return "-";
     }
   }
 
@@ -14,7 +14,7 @@ class DateFormatter {
     try {
       return DateTime.fromMillisecondsSinceEpoch(timestamp);
     } catch (e) {
-      throw e.toString();
+      return DateTime.now();
     }
   }
 }
