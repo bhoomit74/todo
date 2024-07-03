@@ -1,7 +1,7 @@
 enum Status {
-  pending("Pending"),
-  ongoing("Ongoing"),
-  complete("Complete");
+  pending("To Do"),
+  ongoing("In Progress"),
+  complete("Done");
 
   const Status(this.name);
 
